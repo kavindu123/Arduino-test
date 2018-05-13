@@ -40,3 +40,36 @@ void httpGet(String ip, String path, int port)
   connect_wifi(atSendCmd,1000);
   connect_wifi(atHttpGetCmd,1000);
 }
+void connect_wifi(String cmd, int t)
+{
+  int temp=0,i=0;
+  while(1)
+  {
+    lcd.clear();
+    lcd.print(cmd);
+    Serial.println(cmd);
+    Serial1.println(cmd); 
+    while(Serial1.available())
+    {
+      if(Serial1.find("OK"))
+
+      i=8;
+    }
+    delay(t);
+    if(i>5)
+    break;
+    i++;
+  }
+  if(i==8)
+  {
+   Serial.println("OK");
+        lcd.setCursor(0,1);
+      lcd.print("OK");
+  }
+  else
+  {
+   Serial.println("Error");
+         lcd.setCursor(0,1);
+      lcd.print("Error");
+  }
+}
