@@ -1,0 +1,19 @@
+#include"dht.h"                      
+#include<LiquidCrystal.h>
+LiquidCrystal lcd(14,15,16,17,18,19);
+#include<Timer.h>
+Timer t;
+#include <SoftwareSerial.h>
+SoftwareSerial Serial1(2, 3);
+
+#define dht_dpin 12 
+#define heart 13
+dht DHT;
+
+char *api_key="9LLUCMJSQS2HB2R4";     
+static char postUrl[150];
+int humi,tem;
+void httpGet(String ip, String path, int port=8080);
+
+void setup()
+{
