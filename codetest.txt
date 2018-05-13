@@ -17,3 +17,34 @@ void httpGet(String ip, String path, int port=8080);
 
 void setup()
 {
+ lcd.begin(16, 2);
+ lcd.clear();
+ lcd.print("   Humidity   ");
+ lcd.setCursor(0,1);
+ lcd.print("  Measurement ");
+ delay(2000);
+ lcd.clear();
+ lcd.print("Circuit Digest ");
+ lcd.setCursor(0,1);
+ lcd.print("Welcomes You");
+ delay(2000);
+ Serial1.begin(9600);
+ Serial.begin(9600);
+ lcd.clear();
+ lcd.print("WIFI Connecting");
+ lcd.setCursor(0,1);
+ lcd.print("Please wait....");
+ Serial.println("Connecting Wifi....");
+ connect_wifi("AT",1000);
+ connect_wifi("AT+CWMODE=1",1000);
+ connect_wifi("AT+CWQAP",1000);  
+ connect_wifi("AT+RST",5000);
+ connect_wifi("AT+CWJAP=\"1st floor\",\"muda1884\"",10000);
+ Serial.println("Wifi Connected"); 
+ lcd.clear();
+ lcd.print("WIFI Connected.");
+ pinMode(heart, OUTPUT);
+ delay(2000);
+ t.oscillate(heart, 1000, LOW);
+ t.every(20000, send2server);
+}
